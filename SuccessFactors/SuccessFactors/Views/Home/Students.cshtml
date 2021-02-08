@@ -36,35 +36,105 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.first_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.last_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.courses)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.completion_status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.employeenumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.section)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
 
+    @foreach (var item in Model)
+    {
+        if (item.completion_status == "In-progress")
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.courses)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.completion_status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.employeenumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.section)
+                </td>
+
+
+            </tr>
+        }
+    }
+</table>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.courses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.completion_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employeenumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.section)
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        if (item.completion_status.ToLower() == "incomplete")
+        {
+
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.courses)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.completion_status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.employeenumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.section)
+                </td>
+                <td>
+                    @Html.ActionLink("Enroll", "Enroll", new { id = item.id, status = "In-progress", course = item.courses })
+
+                </td>
+
+            </tr>
+        }
+    }
 </table>
