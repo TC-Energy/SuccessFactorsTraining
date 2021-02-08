@@ -26,7 +26,6 @@ namespace SuccessFactors.Models
         {
             string sql = $"select id, first_name, last_name, email, courses, completion_status, employeenumber, section from dbo.StudentTable WHERE email = '{@HttpContext.Current.User.Identity.Name}';";
 
-
             return SQLConnection.loadDate<StudentInfo>(sql);
         }
 
