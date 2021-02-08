@@ -53,5 +53,14 @@ namespace SuccessFactors.Controllers
 
             return View(students);
         }
+
+        public ActionResult Enroll(string id, string status, string course)
+        {
+
+            SQLConnection.EnrollCommand("EnrollCourse", id, status, course);
+
+            return RedirectToAction("Students");
+        }
+
     }
 }

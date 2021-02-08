@@ -23,5 +23,23 @@ namespace SuccessFactors.Models
                 return con.Query<T>(sql).ToList();
             }
         }
+
+
+        public static void EnrollCommand(string queryString, string id, string status, string course)
+        {
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
+            {
+                SqlCommand command = new SqlCommand(queryString, con);
+                command.Connection.Open();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@ID", Convert.ToInt32(id));
+                command.Parameters.AddWithValue("@Status", status);
+                command.Parameters.AddWithValue("@Courses", course);
+                command.ExecuteNonQuery();
+                command.Connection.Close();
+            }
+
+        }
+
     }
 }
