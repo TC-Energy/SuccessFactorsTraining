@@ -24,7 +24,6 @@ namespace SuccessFactors.Models
             }
         }
 
-
         public static void EnrollCommand(string queryString, string id, string status, string course)
         {
             using (SqlConnection con = new SqlConnection(getConnectionstring()))
