@@ -16,20 +16,6 @@ namespace SuccessFactors.Controllers
             return View();
         }
 
-        //public ActionResult About()
-        //{
-        //    ViewBag.Message = "Your application description page.";
-
-        //    return View();
-        //}
-
-        //public ActionResult Contact()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-
-        //    return View();
-        //}
-
         public ActionResult Students()
         {
             ViewBag.Message = "Your student page.";
@@ -56,7 +42,6 @@ namespace SuccessFactors.Controllers
 
         public ActionResult Enroll(string id, string status, string course)
         {
-
             SQLConnection.EnrollCommand("EnrollCourse", id, status, course);
 
             return RedirectToAction("Students");
