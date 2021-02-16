@@ -38,6 +38,11 @@ namespace SuccessFactors.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            return RedirectToAction("Home");
+        }
+
+        public ActionResult Home()
+        {
             return View();
         }
     }
