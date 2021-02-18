@@ -11,6 +11,19 @@
         </ul>
     </text>
 }
+else if (!Session["username"].Equals(""))
+{
+    <text>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-text">
+                Hello, @Session["username"]
+            </li>
+            <li>
+                @Html.ActionLink("Sign out", "ExtSignOut", "Account")
+            </li>
+        </ul>
+    </text>
+}
 else
 {
     <ul class="nav navbar-nav navbar-right">
