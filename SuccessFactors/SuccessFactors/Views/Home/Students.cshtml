@@ -120,10 +120,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.section)
                 </td>
-                <td>
-                    @Html.ActionLink("Enroll", "Enroll", new { id = item.id, status = "In-progress", course = item.courses })
-
-                </td>
             </tr>
         }
     }
