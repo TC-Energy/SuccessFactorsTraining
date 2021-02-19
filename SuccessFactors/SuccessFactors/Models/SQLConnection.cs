@@ -24,16 +24,20 @@ namespace SuccessFactors.Models
             }
         }
 
-        public static void EnrollCommand(string queryString, string id, string status, string course)
+        public static void checkUserExists(string queryString, int User_Id, string First_Name, string Last_Name, string User_name, string Password, string RoleId, string Email)
         {
             using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
                 SqlCommand command = new SqlCommand(queryString, con);
                 command.Connection.Open();
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@ID", Convert.ToInt32(id));
-                command.Parameters.AddWithValue("@Status", status);
-                command.Parameters.AddWithValue("@Courses", course);
+                command.Parameters.AddWithValue("@User_Id", Convert.ToInt32(User_Id));
+                command.Parameters.AddWithValue("@First_Name", First_Name);
+                command.Parameters.AddWithValue("@Last_Name", Last_Name);
+                command.Parameters.AddWithValue("@User_name", User_name);
+                command.Parameters.AddWithValue("@Password", Password);
+                command.Parameters.AddWithValue("@RoleId", RoleId);
+                command.Parameters.AddWithValue("@Email", Email);
                 command.ExecuteNonQuery();
                 command.Connection.Close();
             }
