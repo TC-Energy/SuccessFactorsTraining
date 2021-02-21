@@ -98,29 +98,33 @@
     {
         if (item.completion_status.ToLower() == "incomplete")
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.first_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.last_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.courses)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.completion_status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.employeenumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.section)
-                </td>
-            </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.courses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.completion_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employeenumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.section)
+        </td>
+        <td>
+            @Html.ActionLink("Enroll", "Enroll", new { id = item.id, status = "In-progress", course = item.courses })
+
+        </td>
+    </tr>
         }
     }
 </table>
