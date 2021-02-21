@@ -44,5 +44,32 @@ namespace SuccessFactors.Models
 
         }
 
+        public static bool ValidateExternalUsers(string username, string password)
+        {
+
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
+            {
+                SqlCommand command = new SqlCommand("SELECT * from Ext_Users where username='" + username + "' AND password='" + password + "'", con);
+                command.Connection.Open();
+
+                SqlDataReader dr = command.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    command.Connection.Close();
+                    return true;
+
+                }
+
+                else
+                {
+                    command.Connection.Close();
+                    return false;
+                }
+
+            }
+
+
+        }
+
     }
 }
