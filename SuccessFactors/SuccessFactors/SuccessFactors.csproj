@@ -217,7 +217,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\SignOutCallback.cshtml" />
     <Content Include="Views\Home\Students.cshtml" />
-    <Content Include="Views\Account\Home.cshtml" />
+    <Content Include="Views\Account\ExternalHome.cshtml" />
     <Content Include="Views\ExtHome\About.cshtml" />
     <Content Include="Views\ExtHome\Contact.cshtml" />
     <Content Include="Views\ExtHome\ExtHome_Index.cshtml" />

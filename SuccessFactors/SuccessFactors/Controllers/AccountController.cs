@@ -41,7 +41,7 @@ namespace SuccessFactors.Controllers
             return RedirectToAction("Home");
         }
 
-        public ActionResult Home()
+        public ActionResult ExternalHome()
         {
             return View();
         }
