@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SuccessFactors.Models;
 using static SuccessFactors.Models.StudentInfo;
 
 namespace SuccessFactors.Controllers
