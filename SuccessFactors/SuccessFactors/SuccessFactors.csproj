@@ -218,10 +218,13 @@
     <Content Include="Views\Account\SignOutCallback.cshtml" />
     <Content Include="Views\Home\Students.cshtml" />
     <Content Include="Views\Account\Home.cshtml" />
+    <Content Include="Views\ExtHome\About.cshtml" />
+    <Content Include="Views\ExtHome\Contact.cshtml" />
+    <Content Include="Views\ExtHome\ExtHome_Index.cshtml" />
+    <Content Include="Views\ExtHome\Students.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ExtHome\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
