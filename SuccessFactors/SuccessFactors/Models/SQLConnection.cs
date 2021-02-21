@@ -71,5 +71,10 @@ namespace SuccessFactors.Models
 
         }
 
+        public static bool checkExtUserStatus()
+        {
+            return false;
+        }
+
     }
 }

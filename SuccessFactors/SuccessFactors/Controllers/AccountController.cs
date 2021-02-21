@@ -11,6 +11,7 @@ namespace SuccessFactors.Controllers
 {
     public class AccountController : Controller
     {
+        string extUserName = "";
         public void SignIn()
         {
             // Send an OpenID Connect sign-in request.
@@ -43,10 +44,10 @@ namespace SuccessFactors.Controllers
 
         public ActionResult ExtSignOut()
         {
-            if (!Session["username"].Equals(""))
+            if (!extUserName.Equals(""))
             {
 
-                Session["username"] = "";
+                extUserName = "";
             }
             return RedirectToAction("ExternalHome", "Account");
 
@@ -54,10 +55,13 @@ namespace SuccessFactors.Controllers
 
         public ActionResult ExternalHome()
         {
-            Session["username"] = "";
             return View();
         }
 
+        public string ExternalUser_Name()
+        {
+            return extUserName;
+        }
 
         [HttpPost]
         public ActionResult ValidateExtUser()
@@ -67,13 +71,12 @@ namespace SuccessFactors.Controllers
             bool result = SQLConnection.ValidateExternalUsers(username, password);
             if (result)
             {
-                Session["username"] = username;
+                extUserName = username;
                 return RedirectToAction("ExtStudents", "ExtHome");
             }
             else
             {
-                //Response.Write("<script>alert('Invalid credentials');</script>");
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Invalid credentials entered')", true);
+
                 TempData["AlertMessage"] = "Invalid credentials entered";
                 return RedirectToAction("ExternalHome", "Account");
             }
