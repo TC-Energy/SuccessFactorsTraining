@@ -7,6 +7,7 @@ using System.Web;
 using Dapper;
 using Microsoft.IdentityModel.Protocols;
 
+
 namespace SuccessFactors.Models
 {
     public static class SQLConnection
@@ -42,6 +43,39 @@ namespace SuccessFactors.Models
                 command.Connection.Close();
             }
 
+        }
+
+        public static bool ValidateExternalUsers(string username, string password)
+        {
+
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
+            {
+                SqlCommand command = new SqlCommand("SELECT * from Ext_Users where username='" + username + "' AND password='" + password + "'", con);
+                command.Connection.Open();
+
+                SqlDataReader dr = command.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    
+                    command.Connection.Close();
+                    return true;
+
+                }
+
+                else
+                {
+                    command.Connection.Close();
+                    return false;
+                }
+
+            }
+
+
+        }
+
+        public static bool checkExtUserStatus()
+        {
+            return false;
         }
 
     }

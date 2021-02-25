@@ -6,11 +6,12 @@ using System.Web.Mvc;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Microsoft.Owin.Security;
-
+using SuccessFactors.Models;
 namespace SuccessFactors.Controllers
 {
     public class AccountController : Controller
     {
+        string extUserName = "";
         public void SignIn()
         {
             // Send an OpenID Connect sign-in request.
@@ -38,12 +39,46 @@ namespace SuccessFactors.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("Home");
+            return RedirectToAction("ExternalHome");
         }
 
-        public ActionResult Home()
+        public ActionResult ExtSignOut()
+        {
+
+
+            TempData["username"] = "";
+            return RedirectToAction("ExternalHome", "Account");
+
+        }
+
+        public ActionResult ExternalHome()
         {
             return View();
+        }
+
+        public string ExternalUser_Name()
+        {
+            return extUserName;
+        }
+
+        [HttpPost]
+        public ActionResult ValidateExtUser()
+        {
+            string username = Request.Form["email"];
+            string password = Request.Form["password"];
+            bool result = SQLConnection.ValidateExternalUsers(username, password);
+            if (result)
+            {
+                TempData["username"] = username;
+                return RedirectToAction("ExtStudents", "ExtHome");
+            }
+            else
+            {
+
+                TempData["AlertMessage"] = "Invalid credentials entered";
+                return RedirectToAction("ExternalHome", "Account");
+            }
+
         }
     }
 }
