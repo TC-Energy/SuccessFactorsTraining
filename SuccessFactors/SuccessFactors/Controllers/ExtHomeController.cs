@@ -26,14 +26,10 @@ namespace SuccessFactors.Controllers
             {
                 extstudents.Add(new StudentInfo
                 {
-                    id = row.id,
+                    emp_id = row.emp_id,
                     first_name = row.first_name,
                     last_name = row.last_name,
-                    email = row.email,
-                    courses = row.courses,
-                    completion_status = row.completion_status,
-                    employeenumber = row.employeenumber,
-                    section = row.section
+                    email = row.email
                 });
             }
 

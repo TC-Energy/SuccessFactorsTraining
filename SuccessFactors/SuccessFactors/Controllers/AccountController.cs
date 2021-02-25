@@ -44,14 +44,10 @@ namespace SuccessFactors.Controllers
 
         public ActionResult ExtSignOut()
         {
-
-
-            TempData["username"] = "";
-            return RedirectToAction("ExternalHome", "Account");
-
+            return RedirectToAction("ExternalHomePage", "Account");
         }
 
-        public ActionResult ExternalHome()
+        public ActionResult ExternalHomePage()
         {
             return View();
         }
@@ -69,14 +65,11 @@ namespace SuccessFactors.Controllers
             bool result = SQLConnection.ValidateExternalUsers(username, password);
             if (result)
             {
-                TempData["username"] = username;
                 return RedirectToAction("ExtStudents", "ExtHome");
             }
             else
             {
-
-                TempData["AlertMessage"] = "Invalid credentials entered";
-                return RedirectToAction("ExternalHome", "Account");
+                return RedirectToAction("ExternalHomePage", "Account");
             }
 
         }
