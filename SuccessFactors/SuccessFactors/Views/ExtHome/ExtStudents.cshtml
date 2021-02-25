@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Students";
-    Layout = "~/Views/ExtHome/_ExtLayout.cshtml";
+    Layout = "~/Views/Shared/_ExternalLayout.cshtml";
 }
 
 <h1>Courses Ennrolled</h1>
@@ -18,25 +18,12 @@
         <th>
             @Html.DisplayNameFor(model => model.email)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.courses)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.completion_status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.employeenumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.section)
-        </th>
         <th></th>
     </tr>
 
 
     @foreach (var item in Model)
     {
-        if (item.completion_status == "In-progress")
         {
             <tr>
                 <td>
@@ -47,18 +34,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.courses)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.completion_status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.employeenumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.section)
                 </td>
             </tr>
         }
@@ -78,25 +53,12 @@
         <th>
             @Html.DisplayNameFor(model => model.email)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.courses)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.completion_status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.employeenumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.section)
-        </th>
         <th></th>
     </tr>
 
 
     @foreach (var item in Model)
     {
-        if (item.completion_status.ToLower() == "incomplete")
         {
     <tr>
         <td>
@@ -107,22 +69,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.courses)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.completion_status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.employeenumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.section)
-        </td>
-        <td>
-            @Html.ActionLink("Enroll", "Enroll", new { id = item.id, status = "In-progress", course = item.courses })
-
         </td>
     </tr>
         }

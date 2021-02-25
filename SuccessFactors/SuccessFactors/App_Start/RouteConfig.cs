@@ -16,7 +16,7 @@ namespace SuccessFactors
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Account", action = "ExternalHome", id = UrlParameter.Optional }
+                defaults: new { controller = "Account", action = "ExternalHomePage", id = UrlParameter.Optional }
             );
         }
     }
