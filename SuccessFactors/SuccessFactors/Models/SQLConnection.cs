@@ -7,6 +7,7 @@ using System.Web;
 using Dapper;
 using Microsoft.IdentityModel.Protocols;
 
+
 namespace SuccessFactors.Models
 {
     public static class SQLConnection
@@ -55,6 +56,7 @@ namespace SuccessFactors.Models
                 SqlDataReader dr = command.ExecuteReader();
                 if (dr.HasRows)
                 {
+                    
                     command.Connection.Close();
                     return true;
 

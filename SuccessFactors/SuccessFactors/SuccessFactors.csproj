@@ -222,6 +222,8 @@
     <Content Include="Views\ExtHome\Contact.cshtml" />
     <Content Include="Views\ExtHome\ExtHome_Index.cshtml" />
     <Content Include="Views\ExtHome\ExtStudents.cshtml" />
+    <Content Include="Views\ExtHome\_ExtLayout.cshtml" />
+    <Content Include="Views\ExtHome\_ExtLoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

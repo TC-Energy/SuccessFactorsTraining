@@ -44,11 +44,9 @@ namespace SuccessFactors.Controllers
 
         public ActionResult ExtSignOut()
         {
-            if (!extUserName.Equals(""))
-            {
 
-                extUserName = "";
-            }
+
+            TempData["username"] = "";
             return RedirectToAction("ExternalHome", "Account");
 
         }
@@ -71,7 +69,7 @@ namespace SuccessFactors.Controllers
             bool result = SQLConnection.ValidateExternalUsers(username, password);
             if (result)
             {
-                extUserName = username;
+                TempData["username"] = username;
                 return RedirectToAction("ExtStudents", "ExtHome");
             }
             else
