@@ -25,7 +25,7 @@ namespace SuccessFactors.Models
         //sql connection
         public static List<StudentInfo> load_employees()
         {
-            string sql = $"select User_Id, First_Name, Last_Name, Email from dbo.UserCredentials WHERE Email = '{@HttpContext.Current.User.Identity.Name}';";
+            string sql = $"select User_Id, First_Name, Last_Name, Email from TC_Users WHERE Email = '{@HttpContext.Current.User.Identity.Name}';";
             return SQLConnection.loadDate<StudentInfo>(sql);
         }
 

@@ -50,7 +50,7 @@ namespace SuccessFactors.Models
 
             using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
-                SqlCommand command = new SqlCommand($"SELECT * FROM ExternalUserCredentials WHERE (User_name='{@username}' OR Email='{username}') AND Password = '{@password}';", con);
+                SqlCommand command = new SqlCommand($"SELECT * FROM Ext_Users WHERE (Username='{@username}' OR Email='{username}') AND Password = '{@password}';", con);
                 command.Connection.Open();
 
                 SqlDataReader dr = command.ExecuteReader();
