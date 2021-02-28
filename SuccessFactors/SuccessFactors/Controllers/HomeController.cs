@@ -48,5 +48,10 @@ namespace SuccessFactors.Controllers
 
             return View(students);
         }
+
+        public ActionResult Instructors()
+        {
+            return View();
+        }
     }
 }

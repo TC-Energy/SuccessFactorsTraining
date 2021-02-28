@@ -39,7 +39,7 @@ namespace SuccessFactors.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("ExternalHome");
+            return RedirectToAction("ExternalHomePage");
         }
 
         public ActionResult ExtSignOut()

@@ -35,5 +35,10 @@ namespace SuccessFactors.Controllers
 
             return View(extstudents);
         }
+
+        public ActionResult ExtInstructors()
+        {
+            return View();
+        }
     }
 }

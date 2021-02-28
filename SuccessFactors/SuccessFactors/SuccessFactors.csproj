@@ -219,6 +219,8 @@
     <Content Include="Views\Shared\_ExternalLayout.cshtml" />
     <Content Include="Views\Account\ExternalHomePage.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Instructors.cshtml" />
+    <Content Include="Views\ExtHome\ExtInstructors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
