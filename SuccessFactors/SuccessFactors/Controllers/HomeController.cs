@@ -24,7 +24,7 @@ namespace SuccessFactors.Controllers
             g1.eMail = UserPrincipal.Current.EmailAddress;
             g1.emp_id = Int32.Parse(UserPrincipal.Current.EmployeeId);
 
-            SQLConnection.checkUserExists("checkUserExists", g1.emp_id, g1.firstname, g1.lastname, g1.name, "", "", g1.eMail);
+            SQLConnection.checkUserExists("checkUserExists", g1.emp_id, g1.firstname, g1.lastname, g1.name, "", "Student", g1.eMail);
 
             return View();
         }
