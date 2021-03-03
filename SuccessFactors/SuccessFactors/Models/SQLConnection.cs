@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Protocols;
 
 namespace SuccessFactors.Models
 {
+    
     public static class SQLConnection
     {
         public static string getConnectionstring(string connectionName = "SuccessF")
@@ -50,7 +51,7 @@ namespace SuccessFactors.Models
 
             using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
-                SqlCommand command = new SqlCommand($"SELECT * FROM Ext_Users WHERE (Username='{@username}' OR Email='{username}') AND Password = '{@password}';", con);
+                SqlCommand command = new SqlCommand($"SELECT * FROM External_Users WHERE (Username='{@username}' OR Email='{username}') AND Password = '{@password}';", con);
                 command.Connection.Open();
 
                 SqlDataReader dr = command.ExecuteReader();
@@ -71,9 +72,22 @@ namespace SuccessFactors.Models
 
         }
 
-        public static bool checkExtUserStatus()
+        
+        public static void TCInstructor_CreateCourseSession(string courseID, string date, string location, string instructorID, string course_name)
         {
-            return false;
+         
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
+            {
+                Console.Write(course_name);
+                
+                SqlCommand command = new SqlCommand($"INSERT INTO SESSION (TCInstructor_ID, COURSEID, CreatedON, Location) VALUES({Convert.ToInt32(@instructorID)} , (SELECT CourseID FROM Courses WHERE CourseID = {Convert.ToInt32(@courseID)}) , CONVERT(datetime, '{@date}') , '{@location}');" , con);
+                command.Connection.Open();
+
+                command.ExecuteNonQuery();
+                command.Connection.Close();
+
+            }
+
         }
 
     }

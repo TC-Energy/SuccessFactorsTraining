@@ -4,5 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
+@using (Html.BeginForm("RoleSelection", "Home"))
+{
+
+    <p>Please select your role:</p>
+    <input type="radio" id="student" name="role" value="student">
+    <label for="student">Student</label><br>
+    <input type="radio" id="instructor" name="role" value="instructor">
+    <label for="instructor">Instructor</label><br>
+
+    <input type="submit" value="Submit">
+
+}

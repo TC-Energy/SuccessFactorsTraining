@@ -1,27 +1,182 @@
-﻿
+﻿@model IEnumerable<SuccessFactors.Models.CourseInfo>
+
 @{
     ViewBag.Title = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Instructors</h2>
+<div class="container">
 
-<div class="form-group">
-    <button type="button" class="btn btn-success btn-lg btn-block">Add a course</button>
-</div>
+    <div class="row" id="pane-navigation">
 
-<div class="form-group">
-    <button type="button" onClick="test()" onkeypress="test()" id="btnSubmit" class="btn btn-success btn-lg btn-block">View courses</button>
-</div>
+        <div class="col-lg-4">
 
+                <button type="button" onClick="session()"class="btn btn-success btn-lg btn-block">View taught courses</button>
+          
+        </div>
 
+        <div class="col-lg-4">
 
-<script type="text/javascript">
-    function test()
-    {
+            <button type="button" onClick="test()" onkeypress="test()" id="btnSubmit" class="btn btn-success btn-lg btn-block">View assigned courses</button>
+
+        </div>
        
-        alert("This works");
-    }
 
-</script>
+    </div>
+    <hr>
+    <div class="hidden-lg" id="pane-result">
+        <h1> All Courses Details Info</h1>
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.courseID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.course_number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.course_description)
+                </th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.courseID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.course_number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.course_description)
+                        </td>
+
+                        <td>
+                            <button class='btn btn-sm btn-default' id='search-questions' data-toggle='modal' data-target='#modal-create-session'>Create a Session</button><br>
+                            <!-- Modal Window for CreateSession -->
+                            <div class='modal fade' id='modal-create-session'>
+                                <div class='modal-dialog'>
+                                    <div class='modal-content'>
+                                        @using (Html.BeginForm("CreateSession", "Home"))
+                                        {
+                                            <div class='modal-header'>
+                                                <h2 class='modal-title'>Create a Session for Course</h2>
+                                            </div>
+                                            <div class='modal-body'>
+                                                <input type='hidden' name='courseID' value='@Html.DisplayFor(modelItem => item.courseID)'>
+                                                @*<input type='hidden' name='command' value='SearchQuestions'>*@
+                                                <div class='form-group'>
+                                                    <label class="control-label" for="course-name">Course name:</label>
+                                                    <input type="text" class="form-control" id="course-name" name='course-name' value=" @Html.DisplayFor(modelItem => item.title) ">
+                                                    <br>
+                                                    <label for="location">Choose location for session:</label>
+                                                    <select id="location" name="location">
+                                                        <option value="teams">Microsoft Teams</option>
+                                                        <option value="zoom">Zoom</option>
+                                                        <option value="bluejeans">BlueJeans</option>
+                                                        <option value="skype">Skype</option>
+                                                    </select>
+                                                    <br>
+                                                    <label class="control-label" for="session-date">Pick Date:  </label>
+                                                    <input type="date" class="form-control" id="session-date" name='session-date' placeholder="Enter a session date!">
+
+                                                    <label class="control-label" for="meeting-link">Meeting Link:  </label>
+                                                    <input type="text" class="form-control" id="meeting-link" name='meeting-link' placeholder="Insert meeting link here!">
+                                                </div>
+                                            </div>
+                                            <div class='modal-footer'>
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-default">Submit</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+
+    </div>
+
+
+    <div class="hidden-lg" id="pane-resultB">
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.title)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.createdON)
+
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.location)
+                </th>
+
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createdON)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+
+                <td>
+                <td>
+                    <button type="button" class='btn btn-sm btn-default' id='attendance-info'>View Session Attendance Info</button><br>
+                </td>
+            </tr>
+                }
+            }
+        </table>
+    </div>
+
+
+</div>
+
+
+    <script type="text/javascript">
+        function test() {
+            var x = document.getElementById("pane-result");
+            x.className = "visible-item";
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function session() {
+            var x = document.getElementById("pane-resultB");
+            x.className = "visible-item";
+        }
+
+    </script>
 

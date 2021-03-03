@@ -1,22 +1,24 @@
-﻿@model IEnumerable<SuccessFactors.Models.StudentInfo>
+﻿@model IEnumerable<SuccessFactors.Models.CourseInfo>
+
 
 @{
     ViewBag.Title = "Students";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Courses Ennrolled</h1>
+
+<h1>All courses</h1>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.first_name)
+            @Html.DisplayNameFor(model => model.course_number)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.last_name)
+            @Html.DisplayNameFor(model => model.title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            @Html.DisplayNameFor(model => model.instructor)
         </th>
     </tr>
 
@@ -26,47 +28,20 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.first_name)
+                    @Html.DisplayFor(modelItem => item.course_number)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.last_name)
+                    @Html.DisplayFor(modelItem => item.title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-            </tr>
-        }
-    }
-</table>
-
-<h1>Courses To Complete</h1>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.first_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.last_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-    </tr>
-
-
-    @foreach (var item in Model)
-    {
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.first_name)
+                    @Html.DisplayFor(modelItem => item.instructor)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.last_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
+                    @using (Html.BeginForm("CourseEnroll", "Home"))
+                    {
+                        <input type='hidden' name='courseID' value='@Html.DisplayFor(modelItem => item.courseID)'>
+                        <button type="submit" class='btn btn-sm btn-default' id='search-questions'> Select To Enroll</button>
+                    }
                 </td>
             </tr>
         }
