@@ -19,7 +19,7 @@ namespace SuccessFactors.Models
 
         public static List<T> loadDate<T>(string sql)
         {
-            using(SqlConnection con = new SqlConnection(getConnectionstring()))
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
                 return con.Query<T>(sql).ToList();
             }
@@ -47,7 +47,6 @@ namespace SuccessFactors.Models
 
         public static bool ValidateExternalUsers(string username, string password)
         {
-
             using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
                 SqlCommand command = new SqlCommand($"SELECT * FROM ExternalUserCredentials WHERE (User_name='{@username}' OR Email='{username}') AND Password = '{@password}';", con);
@@ -59,7 +58,6 @@ namespace SuccessFactors.Models
                     command.Connection.Close();
                     return true;
                 }
-
                 else
                 {
                     command.Connection.Close();
@@ -67,14 +65,6 @@ namespace SuccessFactors.Models
                 }
 
             }
-
-
         }
-
-        public static bool checkExtUserStatus()
-        {
-            return false;
-        }
-
     }
 }
