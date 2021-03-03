@@ -24,10 +24,7 @@
                     <li>@Html.ActionLink("Home", "Home", "Account")</li>
                     <li>@Html.ActionLink("Student View", "ExtStudents", "Account")</li>
                 </ul>
-                @if (Model.Checkstatus)
-                {
                     @Html.Partial("_ExternalLoginPartial")
-                }
             </div>
         </div>
     </div>
