@@ -1,0 +1,158 @@
+﻿
+@model ViewModel
+@{
+    ViewBag.Title = "Instructors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Instructor Page</h1>
+
+<div class="container">
+
+    <div class="row">
+
+        <button type="button" class="btn btn-success" onclick="courses_taught_function()"> View Taught Courses</button>
+        <button type="button" class="btn btn-success" onclick="courses_assigned_function()"> View Assigned Courses</button>
+
+    </div>
+
+    <div class="row" id="courses_taught_list" style="display:none">
+        <h3>Courses Taught so far </h3>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => Model.AllInstructorTaughtCourses.ElementAt(0).course_number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => Model.AllInstructorTaughtCourses.ElementAt(0).title)
+                </th>
+
+            </tr>
+
+
+            @foreach (var item in Model.AllInstructorTaughtCourses)
+            {
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.course_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    <button type='button' class='btn btn-info' data-toggle='modal' data-target='#modal-submit-session'> View Sessions for this course</button>
+                </td>
+            </tr>
+                }
+            }
+        </table>
+
+    </div>
+
+
+
+    <div class="row" id="courses_assigned_list" style="display:none">
+        <h3>Courses Assigned Courses </h3>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => Model.AllInstructorAssignCourses.ElementAt(0).course_number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => Model.AllInstructorAssignCourses.ElementAt(0).title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => Model.AllInstructorAssignCourses.ElementAt(0).course_description)
+                </th>
+                <th></th>
+            </tr>
+
+
+            @foreach (var item in Model.AllInstructorAssignCourses)
+            {
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.course_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.course_description)
+                </td>
+
+                <td>
+                    <!-- Modal Window for Creating Session -->
+                    <div class='modal fade' id='modal-submit-session'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                @using (Html.BeginForm("Sessions", "Home"))
+                                {
+                                    <div class='modal-header'>
+                                        <h2 class='modal-title'>Create a session for  @Html.DisplayFor(modelItem => item.title)</h2>
+                                    </div>
+                                    <div class='modal-body'>
+                                        <input type='hidden' name='courseID' value='@Html.DisplayFor(modelItem => item.courseID)'>
+                                        <div class='form-group'>
+                                            <label class="control-label" for="search-term">Search term:</label>
+                                            <input type="text" class="form-control" id="search-term" name='search-term' placeholder="Enter a question!">
+                                        </div>
+                                    </div>
+                                    <div class='modal-footer'>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button id='submit-btn-sq' type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+
+                <td>
+                    <button type='button' class='btn btn-info' data-toggle='modal' data-target='#modal-submit-session'> Create a Session </button>
+                </td>
+
+
+            </tr>
+                }
+            }
+        </table>
+
+    </div>
+
+
+
+  
+
+</div>
+
+<script>
+
+    function courses_assigned_function() {
+        var x = document.getElementById("courses_assigned_list");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function courses_taught_function() {
+        var x = document.getElementById("courses_taught_list");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+
+</script>

@@ -48,5 +48,34 @@ namespace SuccessFactors.Controllers
 
             return View(students);
         }
+
+        public ActionResult Instructors()
+        {
+            ViewModel mymodel = new ViewModel();
+
+            int instructorID = Int32.Parse(UserPrincipal.Current.EmployeeId);
+            var assignedCoursesInstructor = SQLConnection.InstructorAssignedCourses(instructorID);
+            var taughtCoursesInstructor = SQLConnection.InstructorTaughtCourses(instructorID);
+
+            mymodel.AllInstructorAssignCourses = assignedCoursesInstructor;
+            mymodel.AllInstructorTaughtCourses = taughtCoursesInstructor;
+
+
+            return View(mymodel);
+        }
+
+        public ActionResult Sessions()
+        {
+            ViewModel mymodel = new ViewModel();
+
+            int instructorID = Int32.Parse(UserPrincipal.Current.EmployeeId);
+            int courseID = Int32.Parse(Request.Form["CourseID"]); 
+            var instructorSpecificSessions = SQLConnection.load_sessions(instructorID, courseID);
+           
+            mymodel.InstructorSessions = instructorSpecificSessions;
+
+
+            return View(mymodel);
+        }
     }
 }

@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -23,7 +24,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Student View", "Students", "Home")</li>
-                    <li>@Html.ActionLink("Teacher View", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Teacher View", "Instructors", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,5 +41,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/chosen.jquery.js"></script>
 </body>
 </html>

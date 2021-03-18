@@ -71,9 +71,147 @@ namespace SuccessFactors.Models
 
         }
 
-        public static bool checkExtUserStatus()
+        public static List<CourseInfo> studentAssignedCourses(string studentID)
         {
-            return false;
+            var list = new List<CourseInfo>();
+
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
+            {
+                SqlCommand command = new SqlCommand($"SELECT a.CourseID, c.Title FROM AssignedStudentCourses a INNER JOIN Courses c ON a.CourseID = c.CourseID AND (a.TCUser_ID ='{studentID}';", con);
+                command.Connection.Open();
+
+                using (SqlDataReader sdr = command.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        list.Add(new CourseInfo
+                        {
+                            courseID = Convert.ToInt32(sdr["COURSEID"]),
+                            title = sdr["Title"].ToString(),
+                        });
+                    }
+                }
+
+                command.Connection.Close();
+            }
+
+                return list;
+        }
+
+        public static List<InstructorInfo> InstructorAssignedCourses_Student(string courseID)
+        {
+            var list = new List<InstructorInfo>();
+
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
+            {
+                SqlCommand command = new SqlCommand($"SELECT t.First_Name, t.Last_Name FROM TC_Users t a INNER JOIN AssignedInstructorCourses a ON a.CourseID = {courseID} AND a.TCInstructorUser_ID = t.User_Id ;", con);
+                command.Connection.Open();
+
+                using (SqlDataReader sdr = command.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        list.Add(new InstructorInfo
+                        {
+                            first_name = sdr["First_Name"].ToString(),
+                            last_name = sdr["Last_Name"].ToString(),
+                        });
+                    }
+                }
+
+                command.Connection.Close();
+            }
+
+            return list;
+        }
+
+
+        //sql connection
+        public static List<SessionInfo> load_sessions(int userID, int courseID)
+        {
+
+            var list = new List<SessionInfo>();
+
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
+            {
+                SqlCommand command = new SqlCommand($"select CourseID, CreatedON, Location from Session WHERE TCInstructor_ID = '{userID}' AND COURSEID = {courseID};", con);
+                command.Connection.Open();
+
+                using (SqlDataReader sdr = command.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        list.Add(new SessionInfo
+                        {
+                            courseID = Convert.ToInt32(sdr["CourseID"]),
+                            createdON = sdr["CreatedON"].ToString(),
+                            location = sdr["Location"].ToString(),
+
+                        });
+                    }
+                }
+
+                command.Connection.Close();
+            }
+
+            return list;
+        }
+
+
+        public static List<CourseInfo> InstructorAssignedCourses(int instructorID)
+        {
+            var list = new List<CourseInfo>();
+
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
+            {
+                SqlCommand command = new SqlCommand($"SELECT c.Course_Number, c.Title, c.Course_Description FROM Courses c INNER JOIN AssignedInstructorCourses a ON a.CourseID = c.CourseID AND a.TCInstructorUser_ID = {instructorID} ;", con);
+                command.Connection.Open();
+
+                using (SqlDataReader sdr = command.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        list.Add(new CourseInfo
+                        {
+                            course_number = sdr["Course_Number"].ToString(),
+                            title = sdr["Title"].ToString(),
+                            course_description = sdr["Course_Description"].ToString(),
+
+                        });
+                    }
+                }
+
+                command.Connection.Close();
+            }
+
+            return list;
+        }
+
+        public static List<CourseInfo> InstructorTaughtCourses(int instructorID)
+        {
+            var list = new List<CourseInfo>();
+
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
+            {
+                SqlCommand command = new SqlCommand($"SELECT c.Course_Number, c.Title FROM Courses c INNER JOIN AssignedInstructorCourses a ON a.CourseID = c.CourseID AND a.TCInstructorUser_ID = {instructorID} and a.Status = 'True';", con);
+                command.Connection.Open();
+
+                using (SqlDataReader sdr = command.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        list.Add(new CourseInfo
+                        {
+                            course_number = sdr["Course_Number"].ToString(),
+                            title = sdr["Title"].ToString(),
+                        });
+                    }
+                }
+
+                command.Connection.Close();
+            }
+
+            return list;
         }
 
     }
