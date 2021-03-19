@@ -25,7 +25,7 @@ namespace SuccessFactors.Models
             }
         }
 
-        public static void checkUserExists(string queryString, int User_Id, string First_Name, string Last_Name, string User_name, string Password, string RoleId, string Email)
+        public static void checkUserExists(string queryString, int User_Id, string First_Name, string Last_Name, string User_name, string Password, int RoleId, string Email)
         {
             using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
@@ -49,7 +49,7 @@ namespace SuccessFactors.Models
         {
             using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
-                SqlCommand command = new SqlCommand($"SELECT * FROM ExternalUserCredentials WHERE (User_name='{@username}' OR Email='{username}') AND Password = '{@password}';", con);
+                SqlCommand command = new SqlCommand($"SELECT * FROM External_Users WHERE (Username='{@username}' OR Email='{username}') AND Password = '{@password}';", con);
                 command.Connection.Open();
 
                 SqlDataReader dr = command.ExecuteReader();
