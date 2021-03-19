@@ -15,7 +15,6 @@ namespace SuccessFactors.Controllers
         {
             return View();
         }
-
         public ActionResult ExtStudents()
         {
             ViewBag.Message = "Your student page.";
@@ -32,7 +31,6 @@ namespace SuccessFactors.Controllers
                     email = row.email
                 });
             }
-
             return View(extstudents);
         }
     }
