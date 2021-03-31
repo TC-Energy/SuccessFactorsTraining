@@ -74,7 +74,6 @@ namespace SuccessFactors.Controllers
            
             mymodel.InstructorSessions = instructorSpecificSessions;
 
-
             return View(mymodel);
         }
     }
