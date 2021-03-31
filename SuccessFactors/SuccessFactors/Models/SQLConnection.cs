@@ -19,13 +19,13 @@ namespace SuccessFactors.Models
 
         public static List<T> loadDate<T>(string sql)
         {
-            using(SqlConnection con = new SqlConnection(getConnectionstring()))
+            using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
                 return con.Query<T>(sql).ToList();
             }
         }
 
-        public static void checkUserExists(string queryString, int User_Id, string First_Name, string Last_Name, string User_name, string Password, string RoleId, string Email)
+        public static void checkUserExists(string queryString, int User_Id, string First_Name, string Last_Name, string User_name, string Password, int RoleId, string Email)
         {
             using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
@@ -47,10 +47,9 @@ namespace SuccessFactors.Models
 
         public static bool ValidateExternalUsers(string username, string password)
         {
-
             using (SqlConnection con = new SqlConnection(getConnectionstring()))
             {
-                SqlCommand command = new SqlCommand($"SELECT * FROM ExternalUserCredentials WHERE (User_name='{@username}' OR Email='{username}') AND Password = '{@password}';", con);
+                SqlCommand command = new SqlCommand($"SELECT * FROM External_Users WHERE (Username='{@username}' OR Email='{username}') AND Password = '{@password}';", con);
                 command.Connection.Open();
 
                 SqlDataReader dr = command.ExecuteReader();
@@ -59,7 +58,6 @@ namespace SuccessFactors.Models
                     command.Connection.Close();
                     return true;
                 }
-
                 else
                 {
                     command.Connection.Close();
@@ -67,10 +65,7 @@ namespace SuccessFactors.Models
                 }
 
             }
-
-
         }
-
         public static List<CourseInfo> studentAssignedCourses(string studentID)
         {
             var list = new List<CourseInfo>();
@@ -213,6 +208,5 @@ namespace SuccessFactors.Models
 
             return list;
         }
-
     }
 }

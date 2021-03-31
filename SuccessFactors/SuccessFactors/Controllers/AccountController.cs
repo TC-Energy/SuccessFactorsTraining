@@ -11,7 +11,6 @@ namespace SuccessFactors.Controllers
 {
     public class AccountController : Controller
     {
-        string extUserName = "";
         public void SignIn()
         {
             // Send an OpenID Connect sign-in request.
@@ -51,12 +50,7 @@ namespace SuccessFactors.Controllers
         {
             return View();
         }
-
-        public string ExternalUser_Name()
-        {
-            return extUserName;
-        }
-
+        
         [HttpPost]
         public ActionResult ValidateExtUser()
         {
