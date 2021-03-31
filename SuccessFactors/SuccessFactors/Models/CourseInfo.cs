@@ -11,22 +11,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SuccessFactors.Models
 {
-    public class StudentInfo
+    public class CourseInfo
     {
-        [Display(Name = "Student ID")]
-        public int emp_id { get; set; }
-        [Display(Name = "First Name")]
-        public string first_name { get; set; }
-        [Display(Name = "Last Name")]
-        public string last_name { get; set; }
-        [Display(Name = "Email")]
-        public string email { get; set; }
+        [Display(Name = "Course ID")]
+        public int courseID { get; set; }
+        [Display(Name = "Course Number")]
+        public string course_number { get; set; }
+        [Display(Name = "Course Title")]
+        public string title { get; set; }
+        [Display(Name = "Course Description")]
+        public string course_description { get; set; }
+
 
         //sql connection
         public static List<StudentInfo> load_employees()
         {
             string sql = $"select User_Id, First_Name, Last_Name, Email from TC_Users WHERE Email = '{@HttpContext.Current.User.Identity.Name}';";
-            
             return SQLConnection.loadDate<StudentInfo>(sql);
         }
 

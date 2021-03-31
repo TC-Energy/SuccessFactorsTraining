@@ -5,70 +5,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Courses Ennrolled</h1>
+<h1>Choose a course to Enroll</h1>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.first_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.last_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-    </tr>
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <label for="courses_assigned"> Select a course</label>
+
+        <select id="courses_assigned" class="col-md-12">
+            <option value=" "> </option>
+
+            <option value="1">Machine Learning</option>
+            <option value="2">Discrete Mathematics</option>
+            <option value="3">Chemistry</option>
+            <option value="4">Physics</option>
+            <option value="5">Physical Education</option>
+
+        </select>
+    </div>
+
+    <div class="col-md-12">
+        <label for="instructors_assigned"> Select an instructor</label>
+
+        <select id="instructors_assigned" class="col-md-12">
+            <option value=" "> </option>
+
+            <option value="1">Peter Drury</option>
+            <option value="2">Martin Tyler</option>
+            <option value="3">Alessandro Leonardo</option>
+            <option value="4">Chris Tomlin</option>
+            <option value="5">Matteo Messi</option>
+
+        </select>
+    </div>
+</div>
 
 
-    @foreach (var item in Model)
+
+@section Scripts
     {
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.first_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.last_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-            </tr>
-        }
+    
+    <script type="text/javascript">
+
+        $(function () {
+
+            $("#courses_assigned").chosen();
+
+        });
+</script>    
     }
-</table>
-
-<h1>Courses To Complete</h1>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.first_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.last_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-    </tr>
-
-
-    @foreach (var item in Model)
-    {
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.first_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.last_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-            </tr>
-        }
-    }
-</table>
